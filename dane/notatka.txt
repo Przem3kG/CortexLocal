@@ -1,3 +1,1 @@
-Ile lat ma Janek? Janek ma 10 lat.
-Ile lat będzie miał za 5 lat? Za 5 lat Janek będzie miał 15 lat.
-Ile lat miał Janek 3 lata temu? 3 lata temu Janek miał 7 lat.
+
