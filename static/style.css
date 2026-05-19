@@ -1,0 +1,209 @@
+/* Importujemy nowoczesny font z Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* === BAZA === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    /* Głębokie, nowoczesne tło z subtelną poświatą */
+    background: radial-gradient(circle at 15% 50%, #2a1b54, #0f172a 60%, #020617);
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* === GŁÓWNY KONTENER (Glassmorphism) === */
+#chat-container {
+    width: 100%;
+    max-width: 900px;
+    height: 85vh;
+    /* Efekt szronionego szkła */
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* === NAGŁÓWEK === */
+#header {
+    padding: 24px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    /* Gradientowy tekst na nagłówku */
+    background: linear-gradient(90deg, #a855f7, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* === OBSZAR WIADOMOŚCI === */
+#messages {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Ukrycie brzydkiego paska przewijania dla nowoczesnego wyglądu */
+#messages::-webkit-scrollbar { width: 6px; }
+#messages::-webkit-scrollbar-track { background: transparent; }
+#messages::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+
+/* === WIADOMOŚCI === */
+.message {
+    padding: 16px 20px;
+    border-radius: 24px;
+    max-width: 80%;
+    line-height: 1.6;
+    font-size: 15px;
+    font-weight: 300;
+    word-wrap: break-word;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.user-msg {
+    /* Gradientowa wiadomość użytkownika (fiolet -> niebieski) */
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 6px;
+}
+
+.ai-msg {
+    /* Przezroczysta ciemna wiadomość AI */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    align-self: flex-start;
+    border-bottom-left-radius: 6px;
+}
+
+/* === WSKAŹNIK PISANIA === */
+.typing-indicator {
+    display: none;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    border-bottom-left-radius: 6px;
+    align-self: flex-start;
+}
+
+.dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #a855f7; /* Kolor kropek nawiązujący do gradientu */
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: typing 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+.dot:nth-child(3) { margin-right: 0; }
+
+@keyframes typing {
+    0%, 80%, 100% { transform: scale(0.5); opacity: 0.5; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* === OBSZAR WPISYWANIA === */
+#input-area {
+    display: flex;
+    padding: 20px 30px;
+    gap: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#user-input {
+    flex: 1;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border-radius: 30px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#user-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#user-input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+#user-input:disabled {
+    opacity: 0.5;
+}
+
+#send-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    padding: 0 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+#send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+#send-btn:active {
+    transform: translateY(1px);
+}
+
+#send-btn:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Naprawa wylewających się list z dymków */
+.message ul, .message ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 25px; /* Temperujemy domyślny margines przeglądarki */
+}
+
+.message li {
+    margin-bottom: 5px;
+    word-wrap: break-word; /* Wymusza łamanie długich słów, żeby nie przebijały ramki */
+}

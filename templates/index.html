@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CortexLocal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+<div id="chat-container">
+        <!-- Pasek górny -->
+        <div id="header">🧠 Cortex AI</div>
+
+        <!-- Miejsce na wiadomości -->
+        <div id="messages">
+            <div class="message ai-msg">
+                Hi there! I have analyzed the files in your data folder. What would you like to know?
+            </div>
+
+            <!-- Wskaźnik ładowania (domyślnie ukryty) -->
+            <div id="typing-indicator" class="typing-indicator">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!-- Pole wpisywania -->
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Write your question here..." onkeypress="handleEnter(event)" autocomplete="off">
+            <button id="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
